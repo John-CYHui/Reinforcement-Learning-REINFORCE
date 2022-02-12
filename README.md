@@ -13,11 +13,12 @@ The result after training the agent with REINFORCE algorithm or REINFORCE-Baseli
 * [Differentiable policy](#differentiable-policy)
     * [Tile coding](#tile-coding)
     * [Neural network](#neural-network)
+ * [Things I have learnt](#things-i-have-learnt)
 ### What is REINFORCE algorithm?
 
 Proposed at 1992, REINFORCE is the root of policy gradient methods.  <br/>
 
-In short, the algorithm estiamtes the return using monte carlo method and in return adjust the policy using gradient asent. <br/>
+In short, the algorithm estimates the return using monte carlo method and in return adjust the policy using gradient ascent. <br/>
 
 Below is the pseudo code:
 <p align="center">
@@ -59,3 +60,14 @@ The feature x(s,a) is generated through tile coding. This method encodes the ent
 <p align="center">
 <img src="./readme_pic/feature_representation.JPG" width="488"/>
 </p>
+
+#### Neural Network
+
+### Things I have learnt
+
+1. Prune to silent bug
+2. Function presentation plays a big role
+3. Choosing appropriate step size for gradient ascent is difficult
+4. Monte Carlo methods are high variance
+5. Probably needs experience replay strategy to get faster convergence
+6. An alternative way to detect divergence is by monitoring weights change
