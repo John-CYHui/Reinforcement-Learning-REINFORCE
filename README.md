@@ -115,8 +115,8 @@ After episode 10000 (16 tilings, 8 tilings):
 ---
 ### Things I have learnt
 
-1. Reinforcement Learning is prune to silent bug
-2. Function presentation plays a big role
+1. Reinforcement Learning is prune to silent bug (The agent will not learn)
+2. Function representation plays a big role
 3. Choosing appropriate step size for gradient ascent is difficult
 4. Monte Carlo methods are high variance especially when terminal state is hard to reach
 5. Probably needs experience replay strategy to get faster convergence
