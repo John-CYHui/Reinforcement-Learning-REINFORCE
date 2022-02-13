@@ -76,13 +76,14 @@ To do.
 ### Environment
 
 Mountain car is a classical RL example of driving an underpowered car up a steep mountain road. <br/>
-State: Car position and velocity
-Action: Left, stationary, right
-Reward: -1 per time step
-Terimal state: Reaching the goal
+
 <p align="center">
 <img src="./readme_pic/mountain car.JPG" width="488"/>
 </p>
+ **State** : Car position and velocity <br/>
+ **Action** : Left, stationary, right <br/>
+ **Reward** : -1 per time step <br/>
+ **Terimal state** : Reaching the goal <br/>
 
 ---
 ### Results
