@@ -13,8 +13,13 @@ The result after training the agent with REINFORCE algorithm or REINFORCE-Baseli
 * [Differentiable policy](#differentiable-policy)
     * [Tile coding](#tile-coding)
     * [Neural network](#neural-network)
- * [Environment]
+ * [Environment (Mountain car)](#environment)
+ * [Results](#results)
+    * [Total reward](#total-reward)
+    * [Agent performance](#agent-performance)
  * [Things I have learnt](#things-i-have-learnt)
+ 
+---
 ### What is REINFORCE algorithm?
 
 Proposed at 1992, REINFORCE is the root of policy gradient methods.  <br/>
@@ -33,6 +38,7 @@ REINFORCE-baseline chooses the baseline using value estimate and subtracted from
 <img src="./readme_pic/REINFORCE_baseline.JPG" width="488"/>
 </p>
 
+---
 ### Differentiable policy
 
 REINFORCE algorithm requires a differentiable policy parameterization. In theory, any function approxiamtion algorithm would work. <br/> 
@@ -66,6 +72,26 @@ The feature x(s,a) is generated through tile coding. This method encodes the ent
 
 To do.
 
+---
+### Environment
+
+Mountain car is a classical RL example of driving an underpowered car up a steep mountain road. <br/>
+
+<p align="center">
+<img src="./readme_pic/mountain car.JPG" width="488"/>
+</p>
+ **State** : Car position and velocity <br/>
+ **Action** : Left, stationary, right <br/>
+ **Reward** : -1 per time step <br/>
+ **Terimal state** : Reaching the goal <br/>
+
+---
+### Results
+
+#### Total reward
+
+#### Agent performance
+---
 ### Things I have learnt
 
 1. Reinforcement Learning is prune to silent bug
