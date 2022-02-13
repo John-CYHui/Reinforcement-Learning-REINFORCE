@@ -4,7 +4,7 @@ import csv
 import os
 import glob
 import pickle as pk
-from agent import ReinforceAgent
+from agent import ReinforceBaseLineAgent
 
 # Create results folder and clear contents
 if not os.path.exists('./results'):
@@ -15,27 +15,31 @@ for f in files:
     os.remove(f)
 
 # Initialize environment
-max_steps = 100000
+max_steps = 20000
 gym.envs.register(
     id='MountainCarMyEasyVersion-v0',
     entry_point='gym.envs.classic_control:MountainCarEnv',
-    max_episode_steps=max_steps,      # MountainCar-v0 uses 200, not suitable for monte carlo updates
+    max_episode_steps=20000,      # MountainCar-v0 uses 200
 )
 env = gym.make('MountainCarMyEasyVersion-v0')
 min_position, min_velocity = env.observation_space.low
 max_position, max_velocity = env.observation_space.high
 
 
-# Initialize REINFORCE agent
-step_size = 2e-8
+# Initialize REINFORCE Baseline agent
+step_size_theta = 2e-8
+num_tilings = 16
+step_size_w = 0.1 / num_tilings
 agent_info = {'min_position': min_position, 'min_velocity':min_velocity,
             'max_position': max_position, 'max_velocity': max_velocity,
             'num_actions': env.action_space.n, 'iht_size': 4096,
-            'num_tilings': 16, 'num_tiles': 8,
-            'step_size': step_size, 'discount_factor': 1}
+            'num_tilings': num_tilings, 'num_tiles': 8,
+            'step_size_theta': step_size_theta, 'step_size_w': step_size_w,
+            'discount_factor': 1}
 
-agent = ReinforceAgent()
+agent = ReinforceBaseLineAgent()
 agent.agent_init(agent_info)
+
 
 # Episodes rollout
 num_episode = 10000
@@ -65,14 +69,14 @@ for episode in range(num_episode):
             with open('./results/episode_rewards.csv', 'a', newline='') as f:
                 write = csv.writer(f)
                 write.writerow([episode+1, total_reward])
+            
+            
             break
         reward_ls.append(reward)
 
     if total_reward == -max_steps:
-        # Episodes are too long, skip update
         print(agent.theta)
         pass
-
     else:
         for t in range(len(reward_ls)):
             # Naive implementation
@@ -94,7 +98,11 @@ for episode in range(num_episode):
 
             state = state_ls[t]
             action = action_ls[t]
-            agent.update_weight(action, state, g, t)
+            active_state_feature = agent.get_state_feature(state)
+            delta = g - agent.get_state_value(active_state_feature)
+            agent.update_w_weight(state, delta)
+            agent.update_theta_weight(action, state, delta, t)
+
         print(agent.theta)
-    
+        print(agent.w)
 env.close()
