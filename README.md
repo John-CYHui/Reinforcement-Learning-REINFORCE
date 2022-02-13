@@ -80,6 +80,7 @@ Mountain car is a classical RL example of driving an underpowered car up a steep
 <p align="center">
 <img src="./readme_pic/mountain car.JPG" width="488"/>
 </p>
+
  **State** : Car position and velocity <br/>
  **Action** : Left, stationary, right <br/>
  **Reward** : -1 per time step <br/>
@@ -90,7 +91,27 @@ Mountain car is a classical RL example of driving an underpowered car up a steep
 
 #### Total reward
 
+<p align="center">
+<img src="./readme_pic/Total_reward_func_approx.jpg" width="488"/>
+</p>
+
+This figure illustrates 2 different tile encoding methods for training over 10,000 episodes. <br/>
+As shown, 16 tilings provide better discrimination power and hence more accurate value estimation across states. <br/>
+
 #### Agent performance
+After episode 1 (16 tilings, 8 tilings):
+<p align="center">
+<img src="./readme_gif/mountain_car_agent_eps1.gif" width="488"/>
+</p>
+After episode 500 (16 tilings, 8 tilings):
+<p align="center">
+<img src="./readme_gif/mountain_car_agent_eps500.gif" width="488"/>
+</p>
+After episode 10000 (16 tilings, 8 tilings):
+<p align="center">
+<img src="./readme_gif/mountain_car_agent_eps10000.gif" width="488"/>
+</p>
+
 ---
 ### Things I have learnt
 
